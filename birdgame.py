@@ -5,7 +5,7 @@ screen_width=360
 screen_height=640
 ans="k"
 games1=0
- 
+ # code....
 screen=pygame.display.set_mode((screen_width,screen_height))
 pygame.display.set_caption("Andimal Bird")
 clock=pygame.time.Clock()
