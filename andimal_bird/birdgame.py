@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 # Initialize Pygame and set up the display
+# game loop
 pygame.init()
 screen_width=360
 screen_height=640
