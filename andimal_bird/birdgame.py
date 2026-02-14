@@ -15,30 +15,30 @@ GAME_OVER_RED = (200, 0, 0)     # Game over text
 PIPE_GREEN = (0, 200, 0)        # Pipes
 SKY_BLUE = (135, 206, 235)      # Background sky
 
-test_font2=pygame.font.Font('/Users/mikmin/Desktop/birdgame/BotsmaticRegularDemo.ttf',40)
-text_font=pygame.font.Font('/Users/mikmin/Desktop/birdgame/FlappyBirdRegular-9Pq0.ttf',40)
-start_button=pygame.image.load("/Users/mikmin/Desktop/birdgame/start2.png")
+test_font2=pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/BotsmaticRegularDemo.ttf',40)
+text_font=pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/FlappyBirdRegular-9Pq0.ttf',40)
+start_button=pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/start2.png")
 current_screen='start' 
 
 # Load option buttons globally
-option1=pygame.image.load("/Users/mikmin/Desktop/birdgame/option button copy.png")
-option2=pygame.image.load("/Users/mikmin/Desktop/birdgame/option button copy.png")
-option3=pygame.image.load("/Users/mikmin/Desktop/birdgame/option button copy.png")
+option1=pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/option button copy.png")
+option2=pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/option button copy.png")
+option3=pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/option button copy.png")
 
 # Load character selection assets once
-screen2=pygame.image.load("/Users/mikmin/Desktop/birdgame/flappy bird wallpaper.jpeg")
-character1=pygame.image.load("/Users/mikmin/Desktop/birdgame/character1.png")
-character2=pygame.image.load("/Users/mikmin/Desktop/birdgame/character2.png")
+screen2=pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/flappy bird wallpaper.jpeg")
+character1=pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/character1.png")
+character2=pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/character2.png")
 
-option_font1 = pygame.font.Font('/Users/mikmin/Desktop/birdgame/ByteBounce copy.ttf',25)
-option_font2 = pygame.font.Font('/Users/mikmin/Desktop/birdgame/ByteBounce copy.ttf',25)
-option_font3 = pygame.font.Font('/Users/mikmin/Desktop/birdgame/ByteBounce copy.ttf',25)
+option_font1 = pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/ByteBounce copy.ttf',25)
+option_font2 = pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/ByteBounce copy.ttf',25)
+option_font3 = pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/ByteBounce copy.ttf',25)
 textoption1 = option_font1.render('RIZZ GAWDD', True, 'black')
 textoption2 = option_font2.render('SHAWARMAA', True, 'black')
 textoption3 = option_font3.render('PULINGOOO ', True, 'black')
 
 #load images
-bg=pygame.image.load("/Users/mikmin/Desktop/birdgame/flappy bird wallpaper.jpeg")
+bg=pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/flappy bird wallpaper.jpeg")
 
 def draw_text_outline(font, text, text_color, outline_color, center_x, center_y):
     text_surface = font.render(text, True, text_color)
@@ -68,7 +68,7 @@ def draw():
 
 def gamestart():
     screen.fill('white')
-    game_font=pygame.font.Font('/Users/mikmin/Desktop/birdgame/FlappyBirdRegular-9Pq0.ttf',40)
+    game_font=pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/FlappyBirdRegular-9Pq0.ttf',40)
     draw_text_outline(
         game_font,
         'GAME START',
