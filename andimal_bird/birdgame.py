@@ -25,7 +25,7 @@ option1=pygame.image.load("/Users/mikmin/Desktop/birdgame/option button copy.png
 option2=pygame.image.load("/Users/mikmin/Desktop/birdgame/option button copy.png")
 option3=pygame.image.load("/Users/mikmin/Desktop/birdgame/option button copy.png")
 
-# Load character selection assets once
+# Load character selection 
 screen2=pygame.image.load("/Users/mikmin/Desktop/birdgame/flappy bird wallpaper.jpeg")
 character1=pygame.image.load("/Users/mikmin/Desktop/birdgame/character1.png")
 character2=pygame.image.load("/Users/mikmin/Desktop/birdgame/character2.png")
