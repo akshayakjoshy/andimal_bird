@@ -1,5 +1,7 @@
 import pygame
 from pygame.locals import *
+from cflap import Bird, Pipe, Game
+
 
 pygame.init()
 screen_width=360
@@ -8,7 +10,7 @@ ans="k"
 games1=0
  # code....  changed ....x
 screen=pygame.display.set_mode((screen_width,screen_height))
-pygame.display.set_caption("Andimal Bird")
+pygame.display.set_caption("flappy Bird 2")
 clock=pygame.time.Clock()
 SCORE_COLOR = (255, 255, 255)   # White score text
 GAME_OVER_RED = (200, 0, 0)     # Game over text
@@ -63,7 +65,7 @@ def draw():
     screen.blit(start_button,(105,290))
     draw_text_outline(
         test_font2,
-        'ANDIMAL BIRD',
+        'FLAPPY BIRD ',
         PIPE_GREEN,
         (0, 0, 0),
         180,
@@ -156,7 +158,10 @@ while True :
     elif current_screen == 'next':
         chose_character()
     elif current_screen == 'game':
-        gamestart()
+        char_map = {"a": character1, "b": character2, "c": character3}
+        game = Game(screen, clock, bg, char_map[ans])
+        game.run()
+        current_screen = 'start'
     
     pygame.display.update()
     clock.tick(60)
