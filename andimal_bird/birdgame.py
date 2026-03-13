@@ -89,26 +89,37 @@ def gamestart():
 # Screen 2: choose character
 def chose_character():
     screen.blit(screen2,(0,0))
+    
+
     screen.blit(option1,(50,200))
     screen.blit(character1,(229,237))
     screen.blit(textoption1,(100,260))
-    screen.blit(option2,(50,250))
-    screen.blit(character2,(229,300))
-    screen.blit(textoption2,(100,310))   
-    screen.blit(option3,(50,300))  
-    screen.blit(textoption3,(100,360))
-    screen.blit(character3,(229,350))
+
+    screen.blit(option2,(50,260))
+    screen.blit(character2,(229,305))
+    screen.blit(textoption2,(100,320))   
+
+    screen.blit(option3,(50,320))  
+    screen.blit(character3,(229,375))
+    screen.blit(textoption3,(100,380))
 
     draw_text_outline(
         text_font,
-        'CHOOSSE YOUR CHARACTER',
+        'CHOOSE YOUR CHARACTER',
         SCORE_COLOR,
         (0, 0, 0),
         180,
         180
     )
 
-mouse_pos = (0, 0) 
+mouse_pos = (0, 0)
+
+
+
+# shrink the clickable area a little
+option1_rect = pygame.Rect(60, 250, 230, 40)
+option2_rect = pygame.Rect(60, 319, 230, 40)
+option3_rect = pygame.Rect(60, 376, 230, 40)
 while True :
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
@@ -117,31 +128,20 @@ while True :
         
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
+            # Define rects once (e.g., in init)
             
-            # START SCREEN: Check start button
-            if current_screen == 'start':
-                if 105 <= mouse_pos[0] <= 105 + start_button.get_width() and 290 <= mouse_pos[1] <= 290 + start_button.get_height():
-                    current_screen = 'next'
-                    print('Start button clicked')
-            
-            # CHARACTER SELECTION SCREEN: Check character buttons
-            elif current_screen == 'next':
-                if 50 <= mouse_pos[0] <= 50 + option1.get_width() and 200 <= mouse_pos[1] <= 200 + option1.get_height():
-                    ans = "a"
-                    games1 = 1
-                    current_screen = 'game'
+            if current_screen == 'next':
+            # In event loop
+                if option1_rect.collidepoint(mouse_pos):
+                    ans, games1 = "a", 1
                     print("Option A chosen - RIZZ GAWDD")
-                    
-                    
-                elif 50 <= mouse_pos[0] <= 50 + option2.get_width() and 250 <= mouse_pos[1] <= 250 + option2.get_height():
-                    ans = "b"
-                    games1 = 2
+                    current_screen = 'game'
+                elif option2_rect.collidepoint(mouse_pos):
+                    ans, games1 = "b", 2
                     print("Option B chosen - SHAWARMAA")
                     current_screen = 'game'
-                    
-                elif 50 <= mouse_pos[0] <= 50 + option3.get_width() and 300 <= mouse_pos[1] <= 300 + option3.get_height():
-                    ans = "c"
-                    games1 = 3
+                elif option3_rect.collidepoint(mouse_pos):
+                    ans, games1 = "c", 3
                     print("Option C chosen - PULINGOOO")
                     current_screen = 'game'
 
@@ -158,8 +158,8 @@ while True :
     elif current_screen == 'next':
         chose_character()
     elif current_screen == 'game':
-        char_map = {"a": character1, "b": character2, "c": character3}
-        game = Game(screen, clock, bg, char_map[ans])
+        char_map = {1: character1, 2: character2, 3: character3}
+        game = Game(screen, clock, bg, char_map[games1])
         game.run()
         current_screen = 'start'
     
