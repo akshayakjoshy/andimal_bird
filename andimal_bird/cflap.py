@@ -147,8 +147,8 @@ class Game:
 
         # game over overlay
         if self.state == 'dead':
-            msg = self.font.render('GAME OVER — tap to restart', True, (200, 0, 0))
-            self.screen.blit(msg, (20, 280))
+            msg = self.font.render('GAME OVER ', True, (200, 0, 0))
+            self.screen.blit(msg, (50, 280))
 
     def reset(self):
         self.bird.reset()

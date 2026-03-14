@@ -38,7 +38,7 @@ option_font2 = pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/Byt
 option_font3 = pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/ByteBounce copy.ttf',25)
 textoption1 = option_font1.render('RIZZ GAWDD', True, 'black')
 textoption2 = option_font2.render('SHAWARMAA', True, 'black')
-textoption3 = option_font3.render('NIDHII', True, 'black')
+textoption3 = option_font3.render('MADHAVV', True, 'black')
 
 
 #load images
@@ -73,18 +73,11 @@ def draw():
     )
 
 def gamestart():
-    screen.fill('BLUE')
+    
     game_font=pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/FlappyBirdRegular-9Pq0.ttf',40)
     screen3=pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/flappy bird wallpaper.jpeg")
     screen.blit(screen3,(0,0))
-    draw_text_outline(
-        game_font,
-        'POII PADIKK PILAREE',
-        SCORE_COLOR,
-        (0, 0, 0),
-        180,
-        180
-    )
+   
     
 # Screen 2: choose character
 def chose_character():
@@ -100,7 +93,7 @@ def chose_character():
     screen.blit(textoption2,(100,320))   
 
     screen.blit(option3,(50,320))  
-    screen.blit(character3,(229,375))
+    screen.blit(character3,(229,360))
     screen.blit(textoption3,(100,380))
 
     draw_text_outline(
@@ -142,7 +135,7 @@ while True :
                     current_screen = 'game'
                 elif option3_rect.collidepoint(mouse_pos):
                     ans, games1 = "c", 3
-                    print("Option C chosen - PULINGOOO")
+                    print("Option C chosen - madhav")
                     current_screen = 'game'
 
         if event.type == pygame.KEYDOWN:
