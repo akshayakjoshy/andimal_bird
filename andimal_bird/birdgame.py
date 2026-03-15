@@ -17,6 +17,7 @@ SCORE_COLOR = (255, 255, 255)   # White score text
 GAME_OVER_RED = (200, 0, 0)     # Game over text
 PIPE_GREEN = (0, 200, 0)        # Pipes
 SKY_BLUE = (135, 206, 235)      # Background sky
+GAME_OVER_COLOR = (235, 162, 89)
 
 test_font2=pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/BotsmaticRegularDemo.ttf',40)
 text_font=pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/FlappyBirdRegular-9Pq0.ttf',40)
@@ -108,6 +109,38 @@ def chose_character():
 
 mouse_pos = (0, 0)
 
+def score():
+    screen.fill(SKY_BLUE)
+    score=pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/flappy bird wallpaper.jpeg")
+    score_font = pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/Ithaca-LVB75.ttf', 30)
+    game_over_font = pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/FlappyBirdRegular-9Pq0.ttf', 60)
+    
+    screen.blit(score, (0, 0))
+   
+    
+    draw_text_outline(
+        game_over_font,
+        'GAME OVER',
+        GAME_OVER_COLOR,    
+        (0, 0, 0),
+        180, 150
+    )
+    score_text = score_font.render(f'Score:{game.score} ', True, 'black')
+    highscore_text = score_font.render(f'High Score:', True, 'black')
+    
+    screen.blit(score_text, (170, 230))
+    screen.blit(highscore_text, (170, 270))
+    if ans=='a':
+        big_char = pygame.transform.scale(character1, (70,70))
+        screen.blit(big_char,(90,225))
+
+    elif ans=='b':
+        big_char = pygame.transform.scale(character2, (70,70))
+        screen.blit(big_char,(90,225))
+
+    elif ans=='c':
+        big_char = pygame.transform.scale(character3, (70,70))
+        screen.blit(big_char,(90,225))
 
 
 # shrink the clickable area a little
@@ -159,11 +192,12 @@ while True :
         game = Game(screen, clock, bg, char_map[games1])
         game.run()
         pygame.time.delay(500)
-        
-        
-        current_screen = 'start'  # Reset to start after game ends
+        current_screen = 'over'  # Reset to start after game ends
         #code to go back to the 1st screen after the game ends  
-
-    
+    elif current_screen == 'over':
+        score()
+        
+          # Reset to start for next playthrough
+        
     pygame.display.update()
     clock.tick(60)
