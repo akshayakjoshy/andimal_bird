@@ -114,6 +114,7 @@ def score():
 
     bg_img = pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/flappy bird wallpaper.jpeg")
     screen.blit(bg_img,(0,0))
+    #-----for transpenrent layer-----
     dark_layer = pygame.Surface((360,640))  # same size as screen
     dark_layer.set_alpha(120)               # transparency (0–255)
     dark_layer.fill((0,0,0))                # black color
@@ -167,8 +168,8 @@ while True :
             pygame.quit()
             exit()
         
-    if event.type == pygame.MOUSEBUTTONDOWN:
-        mouse_pos = pygame.mouse.get_pos()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_pos = pygame.mouse.get_pos()
 
         if current_screen == 'start':
             if 105 <= mouse_pos[0] <= 255 and 290 <= mouse_pos[1] <= 340:
@@ -180,27 +181,30 @@ while True :
                 ans, games1 = "a", 1
                 print("Option A chosen - RIZZ GAWDD")
                 current_screen = 'game'
+                pygame.event.clear() 
 
             elif option2_rect.collidepoint(mouse_pos):
                 ans, games1 = "b", 2
                 print("Option B chosen - SHAWARMAA")
                 current_screen = 'game'
+                pygame.event.clear() 
 
             elif option3_rect.collidepoint(mouse_pos):
                 ans, games1 = "c", 3
                 print("Option C chosen - madhav")
                 current_screen = 'game'
+                pygame.event.clear()
 
         elif current_screen == 'over':
             if playagain_rect.collidepoint(mouse_pos):
                 print('Play Again button clicked')
                 current_screen = 'start'
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RETURN: 
-                if current_screen == 'start':
-                    current_screen = 'next'
-                    print('Enter key - moving to character selection')
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_RETURN: 
+            if current_screen == 'start':
+                current_screen = 'next'
+                print('Enter key - moving to character selection')
         
         
     # Draw our elements based on current screen
@@ -213,6 +217,7 @@ while True :
         game = Game(screen, clock, bg, char_map[games1])
         game.run()
         pygame.time.delay(500)
+        pygame.event.clear()   # ← flush all buffered events
         current_screen = 'over'  # Reset to start after game ends
         #code to go back to the 1st screen after the game ends  
     elif current_screen == 'over':
