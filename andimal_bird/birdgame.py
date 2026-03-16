@@ -111,69 +111,90 @@ mouse_pos = (0, 0)
 
 def score():
     screen.fill(SKY_BLUE)
-    score=pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/flappy bird wallpaper.jpeg")
+
+    bg_img = pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/flappy bird wallpaper.jpeg")
+    screen.blit(bg_img,(0,0))
+    dark_layer = pygame.Surface((360,640))  # same size as screen
+    dark_layer.set_alpha(120)               # transparency (0–255)
+    dark_layer.fill((0,0,0))                # black color
+
+    screen.blit(dark_layer,(0,0))
+
     score_font = pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/Ithaca-LVB75.ttf', 30)
     game_over_font = pygame.font.Font('/Users/mikmin/Desktop/birdgame/andimal_bird/FlappyBirdRegular-9Pq0.ttf', 60)
-    
-    screen.blit(score, (0, 0))
-   
-    
+
+    # GAME OVER title
     draw_text_outline(
         game_over_font,
         'GAME OVER',
-        GAME_OVER_COLOR,    
-        (0, 0, 0),
-        180, 150
+        GAME_OVER_COLOR,
+        (0,0,0),
+        180,
+        120
     )
-    score_text = score_font.render(f'Score:{game.score} ', True, 'black')
-    highscore_text = score_font.render(f'High Score:', True, 'black')
+
+    # character
+    if ans == 'a':
+        char = pygame.transform.scale(character1,(90,90))
+    elif ans == 'b':
+        char = pygame.transform.scale(character2,(90,90))
+    elif ans == 'c':
+        char = pygame.transform.scale(character3,(90,90))
+
+    char_rect = char.get_rect(center=(180,210))
+    screen.blit(char,char_rect)
+
+    # score text
+    score_text = score_font.render(f'Score: {game.score}', True, 'white')
+    score_rect = score_text.get_rect(center=(180,320))
+    screen.blit(score_text,score_rect)
+
+    highscore_text = score_font.render(f'High Score:', True, 'white')
+    high_rect = highscore_text.get_rect(center=(180,360))
+    screen.blit(highscore_text,high_rect)
+    playagain_image = pygame.image.load("/Users/mikmin/Desktop/birdgame/andimal_bird/playagain.png")
+    screen.blit(playagain_image,(95,400))
     
-    screen.blit(score_text, (170, 230))
-    screen.blit(highscore_text, (170, 270))
-    if ans=='a':
-        big_char = pygame.transform.scale(character1, (70,70))
-        screen.blit(big_char,(90,225))
-
-    elif ans=='b':
-        big_char = pygame.transform.scale(character2, (70,70))
-        screen.blit(big_char,(90,225))
-
-    elif ans=='c':
-        big_char = pygame.transform.scale(character3, (70,70))
-        screen.blit(big_char,(90,225))
-
-
+        
 # shrink the clickable area a little
 option1_rect = pygame.Rect(60, 250, 230, 40)
 option2_rect = pygame.Rect(60, 319, 230, 40)
 option3_rect = pygame.Rect(60, 376, 230, 40)
+playagain_rect = pygame.Rect(95, 400, 170, 50)
 while True :
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
             pygame.quit()
             exit()
         
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            mouse_pos = pygame.mouse.get_pos()
-            # Define rects once (e.g., in init)
-            if current_screen == 'start':
-                if 105 <= mouse_pos[0] <= 255 and 290 <= mouse_pos[1] <= 340:
-                    print('Start button clicked ')
-                    current_screen = 'next'
-            elif current_screen == 'next':
-            # In event loop
-                if option1_rect.collidepoint(mouse_pos):
-                    ans, games1 = "a", 1
-                    print("Option A chosen - RIZZ GAWDD")
-                    current_screen = 'game'
-                elif option2_rect.collidepoint(mouse_pos):
-                    ans, games1 = "b", 2
-                    print("Option B chosen - SHAWARMAA")
-                    current_screen = 'game'
-                elif option3_rect.collidepoint(mouse_pos):
-                    ans, games1 = "c", 3
-                    print("Option C chosen - madhav")
-                    current_screen = 'game'
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        mouse_pos = pygame.mouse.get_pos()
+
+        if current_screen == 'start':
+            if 105 <= mouse_pos[0] <= 255 and 290 <= mouse_pos[1] <= 340:
+                print('Start button clicked')
+                current_screen = 'next'
+
+        elif current_screen == 'next':
+            if option1_rect.collidepoint(mouse_pos):
+                ans, games1 = "a", 1
+                print("Option A chosen - RIZZ GAWDD")
+                current_screen = 'game'
+
+            elif option2_rect.collidepoint(mouse_pos):
+                ans, games1 = "b", 2
+                print("Option B chosen - SHAWARMAA")
+                current_screen = 'game'
+
+            elif option3_rect.collidepoint(mouse_pos):
+                ans, games1 = "c", 3
+                print("Option C chosen - madhav")
+                current_screen = 'game'
+
+        elif current_screen == 'over':
+            if playagain_rect.collidepoint(mouse_pos):
+                print('Play Again button clicked')
+                current_screen = 'start'
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN: 
@@ -196,8 +217,12 @@ while True :
         #code to go back to the 1st screen after the game ends  
     elif current_screen == 'over':
         score()
-        
-          # Reset to start for next playthrough
+    elif current_screen == 'playagain':
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_pos = pygame.mouse.get_pos()
+            if 95 <= mouse_pos[0] <= 265 and 400 <= mouse_pos[1] <= 450:
+                print('Play Again button clicked')
+                draw()  # Go back to start screen
         
     pygame.display.update()
     clock.tick(60)
